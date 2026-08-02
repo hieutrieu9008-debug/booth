@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Booth Loyalty — v4 "FILL TUESDAY" design tokens (DESIGN.md, locked).
+   Canonical names — this repo has no legacy palette.
+   ============================================================ */
+
+:root {
+  --ink: #20231f;         /* text, borders, dark blocks, shadows */
+  --coral: #f26649;       /* PRIMARY — hero panels, brand moments, accents */
+  --coral-dark: #a92e1d;  /* coral's text-safe partner / hover */
+  --cream: #fff4df;       /* light type on coral, warm surfaces */
+  --paper: #f8eee0;       /* page background */
+  --peach: #ffd9c5;       /* soft fills, highlights */
+  --butter: #f7d777;      /* badges/stamps, small pops */
+  --muted: #625a52;       /* secondary text */
+  --line: #8f8173;        /* hairlines/borders */
+
+  /* Punch shadow — the signature elevation. ONE strategy, never mixed
+     with soft shadows (DESIGN.md hard ban). */
+  --shadow-punch: 7px 8px 0 0 var(--ink);
+  --shadow-punch-sm: 3px 4px 0 0 var(--ink);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-coral: var(--coral);
+  --color-coral-dark: var(--coral-dark);
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-peach: var(--peach);
+  --color-butter: var(--butter);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+
+  --font-display: var(--font-bricolage);
+  --font-body: var(--font-figtree);
+
+  /* radius scale (DESIGN.md: cards 16-24px, buttons pill or 12px) */
+  --radius-card-sm: 16px;
+  --radius-card: 20px;
+  --radius-card-lg: 24px;
+  --radius-button: 12px;
+  --radius-pill: 9999px;
+}
+
+.shadow-punch {
+  box-shadow: var(--shadow-punch);
+}
+
+.shadow-punch-sm {
+  box-shadow: var(--shadow-punch-sm);
+}
+
+/* Interactive press feedback: shadow shrinks, element translates toward it. */
+.press-punch {
+  transition: box-shadow 150ms ease, transform 150ms ease;
+}
+.press-punch:active {
+  box-shadow: var(--shadow-punch-sm);
+  transform: translate(4px, 4px);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-figtree), system-ui, sans-serif;
+}
+
+/* WS-E — diner-card celebration entrance (200-300ms state-signaling motion
+   per DESIGN.md). The animation itself lives inside the no-preference media
+   query (a plain CSS gate, not a Tailwind variant — the class is applied
+   unconditionally in JSX) so a prefers-reduced-motion visitor gets the block
+   with no animation at all rather than a disabled-but-still-triggered one. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes celebration-pop {
+    from {
+      opacity: 0;
+      transform: translateY(6px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .animate-celebration-pop {
+    animation: celebration-pop 250ms ease-out;
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "regions": ["lhr1"],
+  "crons": [
+    { "path": "/api/cron/flush-queued", "schedule": "45 8 * * *" },
+    { "path": "/api/cron/campaigns", "schedule": "50 8 * * *" },
+    { "path": "/api/cron/birthday", "schedule": "0 9 * * *" },
+    { "path": "/api/cron/come-back", "schedule": "30 9 * * *" },
+    { "path": "/api/cron/expire-grants", "schedule": "0 3 * * *" },
+    { "path": "/api/cron/remind-expiring", "schedule": "15 3 * * *" },
+    { "path": "/api/cron/health", "schedule": "0 7 * * *" }
+  ]
+}

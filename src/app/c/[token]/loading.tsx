@@ -1,0 +1,2 @@
+﻿import { Card, Skeleton } from "@/components/kit";
+export default function Loading() { return <main className="min-h-screen bg-paper px-6 py-8"><div className="mx-auto max-w-md space-y-6"><Skeleton variant="line" className="w-1/2" /><Card shadow><Skeleton className="mx-auto !h-[220px] !w-[220px]" /></Card><Skeleton variant="line" /><Card><Skeleton /><Skeleton variant="line" className="mt-4" /></Card></div></main>; }
